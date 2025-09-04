@@ -184,6 +184,9 @@ function VexUI.Utils:GetDeviceType()
     end
 end
 
+-- Close the Utils module definition
+end
+
 -- Core Classes
 VexUI.Core = {}
 
@@ -379,6 +382,16 @@ function VexUI.Core.Window:SetupInteractions()
     end)
 
     -- Close button
+    self.closeButton.MouseButton1Click:Connect(function()
+        self:Destroy()
+    end)
+
+    -- Minimize button
+    self.minimizeButton.MouseButton1Click:Connect(function()
+        self:ToggleMinimize()
+    end)
+end
+
 function VexUI.Core.Tab:CreateButton(config)
     local button = VexUI.Components.Button.new(self, config)
     table.insert(self.components, button)
@@ -414,15 +427,6 @@ function VexUI.Core.Tab:UpdateCanvasSize()
     end
     self.pageFrame.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
 end
-    self.closeButton.MouseButton1Click:Connect(function()
-        self:Destroy()
-    end)
-
-    -- Minimize button
-    self.minimizeButton.MouseButton1Click:Connect(function()
-        self:ToggleMinimize()
-    end)
-end
 
 function VexUI.Core.Window:ToggleMinimize()
     if self.minimized then
@@ -442,6 +446,9 @@ function VexUI.Core.Window:Destroy()
     if self.gui then
         self.gui:Destroy()
     end
+end
+
+-- Close the Window class definition
 end
 
 -- Tab Class
@@ -524,6 +531,18 @@ end
 function VexUI.Core.Tab:Deselect()
     if self.selected then
         self.selected = false
+
+        -- Update appearance
+        local tween = TweenService:Create(self.tabButton, TweenInfo.new(0.2), {
+            BackgroundColor3 = VexUI.Themes[self.window.config.Theme].TabBefore
+        })
+        tween:Play()
+
+        -- Hide page
+        self.pageFrame.Visible = false
+    end
+end
+
 -- Notification System
 VexUI.Notifications = {}
 
@@ -671,6 +690,9 @@ function VexUI.Notifications:UpdateLayout()
     self.container.Size = UDim2.new(0, 300, 0, totalHeight)
 end
 
+-- Close the Notifications module definition
+end
+
 -- Configuration Saving/Loading System
 VexUI.Config = {}
 
@@ -692,6 +714,9 @@ function VexUI.Config:Load(folderName, fileName)
     return {}
 end
 
+-- Close the Config module definition
+end
+
 -- Main Interface Functions
 function VexUI:Notify(config)
     return self.Notifications:Create(config)
@@ -707,12 +732,6 @@ end
 function VexUI:LoadConfig(folderName, fileName)
     return self.Config:Load(folderName, fileName)
 end
-
-        -- Update appearance
-        local tween = TweenService:Create(self.tabButton, TweenInfo.new(0.2), {
-            BackgroundColor3 = VexUI.Themes[self.window.config.Theme].TabBefore
-        })
-        tween:Play()
 
 -- Toggle Component
 VexUI.Components.Toggle = setmetatable({}, VexUI.Components.Base)
@@ -1140,9 +1159,8 @@ function VexUI.Components.Dropdown:Set(value)
     self.selectedLabel.Text = self.config.Multi and table.concat(self.value, ", ") or self.value
     self.config.Callback(self.value)
 end
-        -- Hide page
-        self.pageFrame.Visible = false
-    end
+
+-- Close the Dropdown component definition
 end
 
 function VexUI.Core.Window:SelectTab(tab)
@@ -1166,6 +1184,9 @@ function VexUI.Core.Window:CreateTab(name, icon)
     end
 
     return tab
+end
+
+-- Close the Tab class definition
 end
 
 -- Component Base Class
@@ -1313,9 +1334,15 @@ VexUI.Utils.CreateRipple = function(self, parent, button)
     end)
 end
 
+-- Close the Components module definition
+end
+
 -- Main Interface
 function VexUI:CreateWindow(config)
     return VexUI.Core.Window.new(config)
+end
+
+-- Close the Core module definition
 end
 
 --[[
