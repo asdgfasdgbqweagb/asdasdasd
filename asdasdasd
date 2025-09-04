@@ -393,6 +393,7 @@ function VexUI.Core.Window:SetupInteractions()
 end
 
 function VexUI.Core.Tab:CreateButton(config)
+    config = config or {}
     local button = VexUI.Components.Button.new(self, config)
     table.insert(self.components, button)
     self:UpdateCanvasSize()
@@ -400,6 +401,7 @@ function VexUI.Core.Tab:CreateButton(config)
 end
 
 function VexUI.Core.Tab:CreateToggle(config)
+    config = config or {}
     local toggle = VexUI.Components.Toggle.new(self, config)
     table.insert(self.components, toggle)
     self:UpdateCanvasSize()
@@ -407,6 +409,7 @@ function VexUI.Core.Tab:CreateToggle(config)
 end
 
 function VexUI.Core.Tab:CreateSlider(config)
+    config = config or {}
     local slider = VexUI.Components.Slider.new(self, config)
     table.insert(self.components, slider)
     self:UpdateCanvasSize()
@@ -414,6 +417,7 @@ function VexUI.Core.Tab:CreateSlider(config)
 end
 
 function VexUI.Core.Tab:CreateDropdown(config)
+    config = config or {}
     local dropdown = VexUI.Components.Dropdown.new(self, config)
     table.insert(self.components, dropdown)
     self:UpdateCanvasSize()
@@ -738,6 +742,7 @@ VexUI.Components.Toggle = setmetatable({}, VexUI.Components.Base)
 VexUI.Components.Toggle.__index = VexUI.Components.Toggle
 
 function VexUI.Components.Toggle.new(tab, config)
+    config = config or {}
     local self = setmetatable(VexUI.Components.Base.new(tab, config), VexUI.Components.Toggle)
 
     self.config.Content = self.config.Content or ""
@@ -852,6 +857,7 @@ VexUI.Components.Slider = setmetatable({}, VexUI.Components.Base)
 VexUI.Components.Slider.__index = VexUI.Components.Slider
 
 function VexUI.Components.Slider.new(tab, config)
+    config = config or {}
     local self = setmetatable(VexUI.Components.Base.new(tab, config), VexUI.Components.Slider)
 
     self.config.Content = self.config.Content or ""
@@ -997,6 +1003,7 @@ VexUI.Components.Dropdown = setmetatable({}, VexUI.Components.Base)
 VexUI.Components.Dropdown.__index = VexUI.Components.Dropdown
 
 function VexUI.Components.Dropdown.new(tab, config)
+    config = config or {}
     local self = setmetatable(VexUI.Components.Base.new(tab, config), VexUI.Components.Dropdown)
 
     self.config.Content = self.config.Content or ""
@@ -1198,6 +1205,9 @@ function VexUI.Components.Base.new(tab, config)
 
     self.tab = tab
     self.config = config or {}
+    if type(self.config) ~= "table" then
+        self.config = {}
+    end
     self.config.Title = self.config.Title or "Component"
     self.config.Callback = self.config.Callback or function() end
 
@@ -1224,6 +1234,7 @@ VexUI.Components.Button = setmetatable({}, VexUI.Components.Base)
 VexUI.Components.Button.__index = VexUI.Components.Button
 
 function VexUI.Components.Button.new(tab, config)
+    config = config or {}
     local self = setmetatable(VexUI.Components.Base.new(tab, config), VexUI.Components.Button)
 
     self.config.Content = self.config.Content or ""
