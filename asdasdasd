@@ -17,6 +17,11 @@ local Mouse = LocalPlayer:GetMouse()
 -- Configuration
 VexUI.Version = "2.0.0"
 VexUI.Flags = {}
+
+-- Configuration System Variables
+local ConfigurationFolder = "VexUI"
+local ConfigurationExtension = ".cfg"
+
 VexUI.Theme = {
     Dark = {
         Main = Color3.fromRGB(25, 25, 25),
@@ -482,7 +487,7 @@ function VexUI:CreateWindow(config)
     local pageLayout = Create("UIPageLayout", {
         SortOrder = Enum.SortOrder.LayoutOrder,
         EasingStyle = Enum.EasingStyle.Quad,
-        TweenTime = 0.5,
+        TweenTime = 0.3,
         Parent = pageContainer
     })
 
@@ -538,29 +543,45 @@ function VexUI:CreateWindow(config)
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
             ScrollBarThickness = 0,
+            ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0),
+            BottomImage = "",
+            MidImage = "",
+            TopImage = "",
+            CanvasSize = UDim2.new(0, 0, 0, 0),
             Parent = pageContainer
         })
 
         local tabPageLayout = Create("UIListLayout", {
-            Padding = UDim.new(0, 3),
+            Padding = UDim.new(0, 8),
             SortOrder = Enum.SortOrder.LayoutOrder,
             Parent = tabPage
         })
 
-        -- Tab Selection
-        tabInteract.Activated:Connect(function()
+        -- Update canvas size when content changes
+        tabPageLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+            tabPage.CanvasSize = UDim2.new(0, 0, 0, tabPageLayout.AbsoluteContentSize.Y + 20)
+        end)
+
+        -- Tab Selection Function
+        local function selectTab()
             CreateRippleEffect(tabInteract, Mouse.X, Mouse.Y)
+
+            -- Deselect current tab
             if window.CurrentTab then
                 Tween(window.CurrentTab.Button, {BackgroundColor3 = VexUI.Theme[config.Theme].TabBefore}, 0.3)
                 Tween(window.CurrentTab.Title, {TextColor3 = VexUI.Theme[config.Theme].TabTextColor}, 0.3)
             end
 
+            -- Select new tab
             window.CurrentTab = tab
             pageLayout:JumpTo(tabPage)
 
             Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabAfter}, 0.3)
             Tween(tabTitle, {TextColor3 = VexUI.Theme[config.Theme].Selection}, 0.3)
-        end)
+        end
+
+        -- Tab Selection
+        tabInteract.Activated:Connect(selectTab)
 
         -- Hover Effects
         tabInteract.MouseEnter:Connect(function()
@@ -579,6 +600,7 @@ function VexUI:CreateWindow(config)
         tab.Title = tabTitle
         tab.Page = tabPage
         tab.Layout = tabPageLayout
+        tab.Select = selectTab
 
         -- Auto-select first tab
         if not window.CurrentTab then
@@ -587,6 +609,11 @@ function VexUI:CreateWindow(config)
             Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabAfter}, 0.3)
             Tween(tabTitle, {TextColor3 = VexUI.Theme[config.Theme].Selection}, 0.3)
         end
+
+        -- Update tab list canvas size
+        uilistlayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+            tabList.CanvasSize = UDim2.new(0, 0, 0, uilistlayout.AbsoluteContentSize.Y + 20)
+        end)
 
         -- Component Functions
 
@@ -1083,7 +1110,7 @@ function VexUI:CreateWindow(config)
                 Position = UDim2.new(0, 10, 0, 0),
                 BackgroundTransparency = 1,
                 Text = name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
+                TextColor3 = VexUI.Theme[config.Theme].PageTitleColor,
                 TextSize = 14,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
@@ -1139,7 +1166,7 @@ function VexUI:CreateKeySystem(config)
     local mainFrame = Create("Frame", {
         Size = UDim2.new(0, 400, 0, 250),
         Position = UDim2.new(0.5, -200, 0.5, -125),
-        BackgroundColor3 = VexUI.Theme.Default.Background,
+        BackgroundColor3 = VexUI.Theme.Dark.Main,
         BorderSizePixel = 0,
         Parent = keyGui
     })
@@ -1151,7 +1178,7 @@ function VexUI:CreateKeySystem(config)
         Position = UDim2.new(0, 10, 0, 10),
         BackgroundTransparency = 1,
         Text = config.Title,
-        TextColor3 = VexUI.Theme.Default.TextColor,
+        TextColor3 = VexUI.Theme.Dark.TitleTextColor,
         TextSize = 18,
         Font = Enum.Font.GothamBold,
         TextXAlignment = Enum.TextXAlignment.Left,
@@ -1163,7 +1190,7 @@ function VexUI:CreateKeySystem(config)
         Position = UDim2.new(0, 10, 0, 40),
         BackgroundTransparency = 1,
         Text = config.Subtitle,
-        TextColor3 = VexUI.Theme.Default.TextColor,
+        TextColor3 = VexUI.Theme.Dark.ItemTitleColors,
         TextSize = 12,
         Font = Enum.Font.Gotham,
         TextXAlignment = Enum.TextXAlignment.Left,
@@ -1173,26 +1200,26 @@ function VexUI:CreateKeySystem(config)
     local inputBox = Create("TextBox", {
         Size = UDim2.new(1, -40, 0, 30),
         Position = UDim2.new(0, 20, 0, 80),
-        BackgroundColor3 = VexUI.Theme.Default.InputBackground,
+        BackgroundColor3 = VexUI.Theme.Dark.ItemTextBoxKeyBindColors,
         BorderSizePixel = 0,
         PlaceholderText = "Enter your key...",
-        TextColor3 = VexUI.Theme.Default.TextColor,
-        PlaceholderColor3 = VexUI.Theme.Default.PlaceholderColor,
+        TextColor3 = VexUI.Theme.Dark.ItemTextBoxTextColor,
+        PlaceholderColor3 = VexUI.Theme.Dark.ItemTextColors,
         TextSize = 14,
         Font = Enum.Font.Gotham,
         Parent = mainFrame
     })
 
     local inputCorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = inputBox})
-    local inputStroke = Create("UIStroke", {Color = VexUI.Theme.Default.InputStroke, Parent = inputBox})
+    local inputStroke = Create("UIStroke", {Color = VexUI.Theme.Dark.ItemTextBoxKeyBindStrokeColors, Parent = inputBox})
 
     local submitButton = Create("TextButton", {
         Size = UDim2.new(0, 100, 0, 30),
         Position = UDim2.new(0.5, -50, 0, 130),
-        BackgroundColor3 = VexUI.Theme.Default.ElementBackground,
+        BackgroundColor3 = VexUI.Theme.Dark.ItemColors,
         BorderSizePixel = 0,
         Text = "Submit",
-        TextColor3 = VexUI.Theme.Default.TextColor,
+        TextColor3 = VexUI.Theme.Dark.ItemTitleColors,
         TextSize = 14,
         Font = Enum.Font.GothamBold,
         Parent = mainFrame
@@ -1205,7 +1232,7 @@ function VexUI:CreateKeySystem(config)
         Position = UDim2.new(0, 10, 0, 180),
         BackgroundTransparency = 1,
         Text = config.Note,
-        TextColor3 = VexUI.Theme.Default.TextColor,
+        TextColor3 = VexUI.Theme.Dark.ItemTextColors,
         TextSize = 11,
         Font = Enum.Font.Gotham,
         TextWrapped = true,
