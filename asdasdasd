@@ -15,41 +15,107 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
 -- Configuration
-VexUI.Version = "1.0.0"
+VexUI.Version = "2.0.0"
 VexUI.Flags = {}
 VexUI.Theme = {
-    Default = {
-        TextColor = Color3.fromRGB(240, 240, 240),
-        Background = Color3.fromRGB(25, 25, 25),
-        Topbar = Color3.fromRGB(34, 34, 34),
-        Shadow = Color3.fromRGB(20, 20, 20),
-        NotificationBackground = Color3.fromRGB(20, 20, 20),
-        NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
-        TabBackground = Color3.fromRGB(80, 80, 80),
-        TabStroke = Color3.fromRGB(85, 85, 85),
-        TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
-        TabTextColor = Color3.fromRGB(240, 240, 240),
-        SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
-        ElementBackground = Color3.fromRGB(35, 35, 35),
-        ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
-        SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
-        ElementStroke = Color3.fromRGB(50, 50, 50),
-        SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
-        SliderBackground = Color3.fromRGB(50, 138, 220),
-        SliderProgress = Color3.fromRGB(50, 138, 220),
-        SliderStroke = Color3.fromRGB(58, 163, 255),
-        ToggleBackground = Color3.fromRGB(30, 30, 30),
-        ToggleEnabled = Color3.fromRGB(0, 146, 214),
-        ToggleDisabled = Color3.fromRGB(100, 100, 100),
-        ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
-        ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
-        ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
-        ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
-        DropdownSelected = Color3.fromRGB(40, 40, 40),
-        DropdownUnselected = Color3.fromRGB(30, 30, 30),
-        InputBackground = Color3.fromRGB(30, 30, 30),
-        InputStroke = Color3.fromRGB(65, 65, 65),
-        PlaceholderColor = Color3.fromRGB(178, 178, 178)
+    Dark = {
+        Main = Color3.fromRGB(25, 25, 25),
+        Shadow = Color3.fromRGB(0, 0, 0),
+        TitleBar = Color3.fromRGB(31, 31, 31),
+        TabBefore = Color3.fromRGB(33, 33, 33),
+        TabAfter = Color3.fromRGB(41, 41, 41),
+        TitleTextColor = Color3.fromRGB(255, 255, 255),
+        TabTextColor = Color3.fromRGB(255, 255, 255),
+        TitleLineColor = Color3.fromRGB(44, 44, 44),
+        PageTitleColor = Color3.fromRGB(198, 198, 198),
+        Selection = Color3.fromRGB(255, 66, 66),
+        CloseMinimize = Color3.fromRGB(74, 74, 74),
+        ItemColors = Color3.fromRGB(35, 35, 35),
+        ItemTitleColors = Color3.fromRGB(231, 231, 231),
+        ItemTextColors = Color3.fromRGB(171, 171, 170),
+        ItemTextBoxKeyBindColors = Color3.fromRGB(27, 27, 27),
+        ItemTextBoxKeyBindStrokeColors = Color3.fromRGB(60, 60, 60),
+        ItemTextBoxTextColor = Color3.fromRGB(132, 132, 132),
+        ItemKeyBindTextColor = Color3.fromRGB(199, 199, 199),
+        ToggleTickColor = Color3.fromRGB(255, 255, 255),
+        ButtonClickIconColor = Color3.fromRGB(182, 182, 182),
+        ButtonHover = Color3.fromRGB(42, 42, 42),
+        SliderButtonFrameColor = Color3.fromRGB(35, 45, 55),
+        InSliderFrame = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(44, 107, 162)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 62, 93))},
+        NumColor = Color3.fromRGB(124, 155, 182),
+        DropdownColorPickerImageArrowColors = Color3.fromRGB(199, 199, 199),
+        NotificationNotifyColor = Color3.fromRGB(42, 44, 42),
+        NotificationNotifyTitleColor = Color3.fromRGB(231, 231, 231),
+        NotificationNotifyTextColor = Color3.fromRGB(171, 171, 170),
+        IconColor = Color3.fromRGB(255, 255, 255),
+        IconShadow = Color3.fromRGB(0, 0, 0),
+        NotifyButtons = Color3.fromRGB(163, 162, 165)
+    },
+    White = {
+        Main = Color3.fromRGB(225, 225, 225),
+        Shadow = Color3.fromRGB(255, 255, 255),
+        TitleBar = Color3.fromRGB(255, 255, 255),
+        TabBefore = Color3.fromRGB(239, 239, 239),
+        TabAfter = Color3.fromRGB(255, 255, 255),
+        TitleTextColor = Color3.fromRGB(36, 36, 36),
+        TabTextColor = Color3.fromRGB(0, 0, 0),
+        TitleLineColor = Color3.fromRGB(89, 89, 89),
+        PageTitleColor = Color3.fromRGB(12, 12, 12),
+        Selection = Color3.fromRGB(170, 0, 255),
+        CloseMinimize = Color3.fromRGB(36, 36, 36),
+        ItemColors = Color3.fromRGB(200, 200, 200),
+        ItemTitleColors = Color3.fromRGB(0, 0, 0),
+        ItemTextColors = Color3.fromRGB(53, 53, 53),
+        ItemTextBoxKeyBindColors = Color3.fromRGB(234, 234, 234),
+        ItemTextBoxKeyBindStrokeColors = Color3.fromRGB(60, 60, 60),
+        ItemTextBoxTextColor = Color3.fromRGB(0, 0, 0),
+        ItemKeyBindTextColor = Color3.fromRGB(0, 0, 0),
+        ToggleTickColor = Color3.fromRGB(11, 11, 11),
+        ButtonClickIconColor = Color3.fromRGB(27, 27, 27),
+        ButtonHover = Color3.fromRGB(229, 229, 229),
+        SliderButtonFrameColor = Color3.fromRGB(162, 209, 255),
+        InSliderFrame = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(69, 171, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(46, 114, 170))},
+        NumColor = Color3.fromRGB(25, 31, 36),
+        DropdownColorPickerImageArrowColors = Color3.fromRGB(0, 0, 0),
+        NotificationNotifyColor = Color3.fromRGB(207, 217, 207),
+        NotificationNotifyTitleColor = Color3.fromRGB(22, 22, 22),
+        NotificationNotifyTextColor = Color3.fromRGB(56, 56, 56),
+        IconColor = Color3.fromRGB(48, 48, 48),
+        IconShadow = Color3.fromRGB(255, 255, 255),
+        NotifyButtons = Color3.fromRGB(52, 52, 53)
+    },
+    Pink = {
+        Main = Color3.fromRGB(190, 145, 174),
+        Shadow = Color3.fromRGB(190, 145, 174),
+        TitleBar = Color3.fromRGB(239, 189, 219),
+        TabBefore = Color3.fromRGB(237, 175, 203),
+        TabAfter = Color3.fromRGB(239, 189, 219),
+        TitleTextColor = Color3.fromRGB(80, 70, 75),
+        TabTextColor = Color3.fromRGB(0, 0, 0),
+        TitleLineColor = Color3.fromRGB(80, 70, 75),
+        PageTitleColor = Color3.fromRGB(12, 12, 12),
+        Selection = Color3.fromRGB(255, 0, 255),
+        CloseMinimize = Color3.fromRGB(80, 70, 75),
+        ItemColors = Color3.fromRGB(227, 167, 195),
+        ItemTitleColors = Color3.fromRGB(43, 43, 41),
+        ItemTextColors = Color3.fromRGB(53, 53, 53),
+        ItemTextBoxKeyBindColors = Color3.fromRGB(173, 115, 173),
+        ItemTextBoxKeyBindStrokeColors = Color3.fromRGB(173, 115, 173),
+        ItemTextBoxTextColor = Color3.fromRGB(0, 0, 0),
+        ItemKeyBindTextColor = Color3.fromRGB(0, 0, 0),
+        ToggleTickColor = Color3.fromRGB(11, 11, 11),
+        ButtonClickIconColor = Color3.fromRGB(27, 27, 27),
+        ButtonHover = Color3.fromRGB(255, 188, 219),
+        SliderButtonFrameColor = Color3.fromRGB(162, 209, 255),
+        InSliderFrame = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(54, 134, 200)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 62, 93))},
+        NumColor = Color3.fromRGB(0, 170, 255),
+        DropdownColorPickerImageArrowColors = Color3.fromRGB(199, 199, 199),
+        NotificationNotifyColor = Color3.fromRGB(239, 189, 219),
+        NotificationNotifyTitleColor = Color3.fromRGB(231, 231, 231),
+        NotificationNotifyTextColor = Color3.fromRGB(56, 56, 56),
+        IconColor = Color3.fromRGB(48, 48, 48),
+        IconShadow = Color3.fromRGB(190, 145, 174),
+        NotifyButtons = Color3.fromRGB(52, 52, 53)
     }
 }
 
@@ -152,6 +218,50 @@ local function MakeResizable(object, minSize, maxSize)
     end)
 end
 
+local function CreateShadow(parent, size, transparency)
+    local shadow = Create("ImageLabel", {
+        BackgroundTransparency = 1,
+        BorderSizePixel = 0,
+        Image = "rbxassetid://5028857084",
+        ImageColor3 = Color3.fromRGB(0, 0, 0),
+        ImageTransparency = transparency or 0.5,
+        ScaleType = Enum.ScaleType.Slice,
+        SliceCenter = Rect.new(24, 24, 276, 276),
+        Size = size or UDim2.new(1, 47, 1, 47),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        ZIndex = 0,
+        Parent = parent
+    })
+    return shadow
+end
+
+local function CreateRippleEffect(button, x, y)
+    spawn(function()
+        button.ClipsDescendants = true
+        local circle = Create("ImageLabel", {
+            BackgroundTransparency = 1,
+            Image = "rbxassetid://266543268",
+            ImageColor3 = Color3.fromRGB(255, 255, 255),
+            ImageTransparency = 0.8,
+            Parent = button
+        })
+
+        local new_x = x - circle.AbsolutePosition.X
+        local new_y = y - circle.AbsolutePosition.Y
+        circle.Position = UDim2.new(0, new_x, 0, new_y)
+
+        local size = button.AbsoluteSize.X > button.AbsoluteSize.Y and button.AbsoluteSize.X * 1.5 or button.AbsoluteSize.Y * 1.5
+        Tween(circle, {Size = UDim2.new(0, size, 0, size), Position = UDim2.new(0.5, -size/2, 0.5, -size/2)}, 0.3)
+
+        for i = 1, 10 do
+            circle.ImageTransparency = i / 10
+            task.wait()
+        end
+        circle:Destroy()
+    end)
+end
+
 -- Notification System
 function VexUI:Notify(config)
     config = config or {}
@@ -159,35 +269,61 @@ function VexUI:Notify(config)
     config.Content = config.Content or ""
     config.Duration = config.Duration or 5
     config.Image = config.Image or 0
+    config.Theme = config.Theme or "Dark"
 
     local notification = Create("Frame", {
-        Size = UDim2.new(0, 300, 0, 80),
-        Position = UDim2.new(1, 330, 1, -100),
-        BackgroundColor3 = VexUI.Theme.Default.NotificationBackground,
+        Size = UDim2.new(0, 320, 0, 80),
+        Position = UDim2.new(1, 350, 1, -100),
+        BackgroundColor3 = VexUI.Theme[config.Theme].NotificationNotifyColor,
+        BackgroundTransparency = 0.2,
         BorderSizePixel = 0,
         Parent = CoreGui:FindFirstChild("VexNotifications") or Create("ScreenGui", {Name = "VexNotifications", Parent = CoreGui})
     })
 
-    local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 5), Parent = notification})
+    local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = notification})
+    local uistroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme].NotifyButtons, Thickness = 2.5, Transparency = 0.8, Parent = notification})
+
+    -- Drop Shadow
+    CreateShadow(notification, UDim2.new(1, 47, 1, 47), 0.5)
+
+    local iconFrame = Create("Frame", {
+        Size = UDim2.new(0, 41, 0, 41),
+        Position = UDim2.new(0, 10, 0.5, -20.5),
+        BackgroundColor3 = VexUI.Theme[config.Theme].Selection,
+        BorderSizePixel = 0,
+        Parent = notification
+    })
+
+    local iconCorner = Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = iconFrame})
+
+    local icon = Create("ImageLabel", {
+        Size = UDim2.new(0, 26, 0, 26),
+        Position = UDim2.new(0.5, -13, 0.5, -13),
+        BackgroundTransparency = 1,
+        Image = "rbxassetid://7021995683",
+        ImageColor3 = VexUI.Theme[config.Theme].IconColor,
+        Parent = iconFrame
+    })
+
     local title = Create("TextLabel", {
-        Size = UDim2.new(1, -20, 0, 20),
-        Position = UDim2.new(0, 10, 0, 5),
+        Size = UDim2.new(1, -80, 0, 20),
+        Position = UDim2.new(0, 60, 0, 10),
         BackgroundTransparency = 1,
         Text = config.Title,
-        TextColor3 = VexUI.Theme.Default.TextColor,
-        TextSize = 14,
+        TextColor3 = VexUI.Theme[config.Theme].NotificationNotifyTitleColor,
+        TextSize = 15,
         Font = Enum.Font.GothamBold,
         TextXAlignment = Enum.TextXAlignment.Left,
         Parent = notification
     })
 
     local content = Create("TextLabel", {
-        Size = UDim2.new(1, -20, 0, 40),
-        Position = UDim2.new(0, 10, 0, 25),
+        Size = UDim2.new(1, -80, 0, 30),
+        Position = UDim2.new(0, 60, 0, 30),
         BackgroundTransparency = 1,
         Text = config.Content,
-        TextColor3 = VexUI.Theme.Default.TextColor,
-        TextSize = 12,
+        TextColor3 = VexUI.Theme[config.Theme].NotificationNotifyTextColor,
+        TextSize = 13,
         Font = Enum.Font.Gotham,
         TextXAlignment = Enum.TextXAlignment.Left,
         TextWrapped = true,
@@ -195,37 +331,43 @@ function VexUI:Notify(config)
     })
 
     local closeButton = Create("TextButton", {
-        Size = UDim2.new(0, 20, 0, 20),
-        Position = UDim2.new(1, -25, 0, 5),
+        Size = UDim2.new(0, 25, 0, 25),
+        Position = UDim2.new(1, -30, 0, 5),
         BackgroundTransparency = 1,
-        Text = "X",
-        TextColor3 = VexUI.Theme.Default.TextColor,
-        TextSize = 14,
-        Font = Enum.Font.GothamBold,
+        Text = "",
         Parent = notification
     })
 
-    Tween(notification, {Position = UDim2.new(1, -320, 1, -100)}, 0.5, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
+    local closeIcon = Create("ImageLabel", {
+        Size = UDim2.new(1, -8, 1, -8),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundTransparency = 1,
+        Image = "rbxassetid://9886659671",
+        ImageColor3 = VexUI.Theme[config.Theme].NotifyButtons,
+        Parent = closeButton
+    })
+
+    Tween(notification, {Position = UDim2.new(1, -330, 1, -100)}, 0.5, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
 
     closeButton.Activated:Connect(function()
-        Tween(notification, {Position = UDim2.new(1, 330, 1, -100)}, 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
+        Tween(notification, {Position = UDim2.new(1, 350, 1, -100)}, 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
         task.wait(0.3)
         notification:Destroy()
     end)
 
     task.wait(config.Duration)
     if notification.Parent then
-        Tween(notification, {Position = UDim2.new(1, 330, 1, -100)}, 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
+        Tween(notification, {Position = UDim2.new(1, 350, 1, -100)}, 0.3, Enum.EasingStyle.Back, Enum.EasingDirection.InOut)
         task.wait(0.3)
         notification:Destroy()
     end
 end
-
 -- Window Creation
 function VexUI:CreateWindow(config)
     config = config or {}
     config.Name = config.Name or "Vex UI"
-    config.Theme = config.Theme or "Default"
+    config.Theme = config.Theme or "Dark"
 
     local window = {}
 
@@ -235,58 +377,82 @@ function VexUI:CreateWindow(config)
         Parent = CoreGui
     })
 
-    local mainFrame = Create("Frame", {
+    -- Drop Shadow Holder
+    local shadowHolder = Create("Frame", {
         Size = UDim2.new(0, 600, 0, 400),
         Position = UDim2.new(0.5, -300, 0.5, -200),
-        BackgroundColor3 = VexUI.Theme[config.Theme].Background,
-        BorderSizePixel = 0,
+        BackgroundTransparency = 1,
         Parent = screenGui
     })
 
-    local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 5), Parent = mainFrame})
+    -- Drop Shadow
+    CreateShadow(shadowHolder, UDim2.new(1, 47, 1, 47), 0.5)
+
+    -- Main Frame
+    local mainFrame = Create("Frame", {
+        Size = UDim2.new(1, -47, 1, -47),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundColor3 = VexUI.Theme[config.Theme].Main,
+        BorderSizePixel = 0,
+        Parent = shadowHolder
+    })
+
+    local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = mainFrame})
+    local uistroke = Create("UIStroke", {Color = Color3.fromRGB(50, 50, 50), Thickness = 1.6, Parent = mainFrame})
 
     -- Topbar
     local topbar = Create("Frame", {
-        Size = UDim2.new(1, 0, 0, 40),
-        BackgroundColor3 = VexUI.Theme[config.Theme].Topbar,
+        Size = UDim2.new(1, 0, 0, 38),
+        BackgroundColor3 = VexUI.Theme[config.Theme].TitleBar,
         BorderSizePixel = 0,
         Parent = mainFrame
     })
 
+    local topbarCorner = Create("UICorner", {CornerRadius = UDim.new(0, 8), Parent = topbar})
+
     local title = Create("TextLabel", {
-        Size = UDim2.new(1, -80, 1, 0),
+        Size = UDim2.new(1, -100, 1, 0),
         Position = UDim2.new(0, 10, 0, 0),
         BackgroundTransparency = 1,
         Text = config.Name,
-        TextColor3 = VexUI.Theme[config.Theme].TextColor,
-        TextSize = 16,
+        TextColor3 = VexUI.Theme[config.Theme].TitleTextColor,
+        TextSize = 14,
         Font = Enum.Font.GothamBold,
         TextXAlignment = Enum.TextXAlignment.Left,
         Parent = topbar
     })
 
     local closeButton = Create("TextButton", {
-        Size = UDim2.new(0, 30, 0, 30),
-        Position = UDim2.new(1, -35, 0.5, -15),
+        Size = UDim2.new(0, 25, 0, 25),
+        Position = UDim2.new(1, -8, 0.5, -12.5),
+        AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Text = "×",
-        TextColor3 = VexUI.Theme[config.Theme].TextColor,
-        TextSize = 20,
-        Font = Enum.Font.GothamBold,
+        Text = "",
         Parent = topbar
+    })
+
+    local closeIcon = Create("ImageLabel", {
+        Size = UDim2.new(1, -8, 1, -8),
+        Position = UDim2.new(0.5, 0, 0.5, 0),
+        AnchorPoint = Vector2.new(0.5, 0.5),
+        BackgroundTransparency = 1,
+        Image = "rbxassetid://9886659671",
+        ImageColor3 = VexUI.Theme[config.Theme].CloseMinimize,
+        Parent = closeButton
     })
 
     -- Content Area
     local content = Create("Frame", {
-        Size = UDim2.new(1, -20, 1, -60),
-        Position = UDim2.new(0, 10, 0, 50),
+        Size = UDim2.new(1, -20, 1, -58),
+        Position = UDim2.new(0, 10, 0, 48),
         BackgroundTransparency = 1,
         Parent = mainFrame
     })
 
     -- Tab Container
     local tabContainer = Create("Frame", {
-        Size = UDim2.new(0, 150, 1, 0),
+        Size = UDim2.new(0, 120, 1, 0),
         BackgroundTransparency = 1,
         Parent = content
     })
@@ -300,15 +466,15 @@ function VexUI:CreateWindow(config)
     })
 
     local uilistlayout = Create("UIListLayout", {
-        Padding = UDim.new(0, 5),
+        Padding = UDim.new(0, 3),
         SortOrder = Enum.SortOrder.LayoutOrder,
         Parent = tabList
     })
 
     -- Page Container
     local pageContainer = Create("Frame", {
-        Size = UDim2.new(1, -170, 1, 0),
-        Position = UDim2.new(0, 170, 0, 0),
+        Size = UDim2.new(1, -140, 1, 0),
+        Position = UDim2.new(0, 130, 0, 0),
         BackgroundTransparency = 1,
         Parent = content
     })
@@ -316,15 +482,18 @@ function VexUI:CreateWindow(config)
     local pageLayout = Create("UIPageLayout", {
         SortOrder = Enum.SortOrder.LayoutOrder,
         EasingStyle = Enum.EasingStyle.Quad,
-        TweenTime = 0.3,
+        TweenTime = 0.5,
         Parent = pageContainer
     })
 
     -- Make draggable
-    MakeDraggable(topbar, mainFrame)
+    MakeDraggable(topbar, shadowHolder)
 
     -- Close functionality
     closeButton.Activated:Connect(function()
+        CreateRippleEffect(closeButton, Mouse.X, Mouse.Y)
+        Tween(shadowHolder, {Size = UDim2.new(0, 0, 0, 0)}, 0.3)
+        task.wait(0.3)
         screenGui:Destroy()
     end)
 
@@ -337,21 +506,21 @@ function VexUI:CreateWindow(config)
 
         -- Tab Button
         local tabButton = Create("Frame", {
-            Size = UDim2.new(1, -10, 0, 35),
-            BackgroundColor3 = VexUI.Theme[config.Theme].TabBackground,
+            Size = UDim2.new(1, -10, 0, 30),
+            BackgroundColor3 = VexUI.Theme[config.Theme].TabBefore,
             BorderSizePixel = 0,
             Parent = tabList
         })
 
-        local tabCorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = tabButton})
+        local tabCorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = tabButton})
 
         local tabTitle = Create("TextLabel", {
-            Size = UDim2.new(1, -40, 1, 0),
-            Position = UDim2.new(0, 35, 0, 0),
+            Size = UDim2.new(1, -30, 1, 0),
+            Position = UDim2.new(0, 30, 0, 0),
             BackgroundTransparency = 1,
             Text = name,
             TextColor3 = VexUI.Theme[config.Theme].TabTextColor,
-            TextSize = 12,
+            TextSize = 13,
             Font = Enum.Font.GothamBold,
             TextXAlignment = Enum.TextXAlignment.Left,
             Parent = tabButton
@@ -368,28 +537,42 @@ function VexUI:CreateWindow(config)
         local tabPage = Create("ScrollingFrame", {
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
-            ScrollBarThickness = 3,
+            ScrollBarThickness = 0,
             Parent = pageContainer
         })
 
         local pageLayout = Create("UIListLayout", {
-            Padding = UDim.new(0, 5),
+            Padding = UDim.new(0, 3),
             SortOrder = Enum.SortOrder.LayoutOrder,
             Parent = tabPage
         })
 
         -- Tab Selection
         tabInteract.Activated:Connect(function()
+            CreateRippleEffect(tabInteract, Mouse.X, Mouse.Y)
             if window.CurrentTab then
-                Tween(window.CurrentTab.Button, {BackgroundColor3 = VexUI.Theme[config.Theme].TabBackground}, 0.3)
+                Tween(window.CurrentTab.Button, {BackgroundColor3 = VexUI.Theme[config.Theme].TabBefore}, 0.3)
                 Tween(window.CurrentTab.Title, {TextColor3 = VexUI.Theme[config.Theme].TabTextColor}, 0.3)
             end
 
             window.CurrentTab = tab
             pageLayout:JumpTo(tabPage)
 
-            Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabBackgroundSelected}, 0.3)
-            Tween(tabTitle, {TextColor3 = VexUI.Theme[config.Theme].SelectedTabTextColor}, 0.3)
+            Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabAfter}, 0.3)
+            Tween(tabTitle, {TextColor3 = VexUI.Theme[config.Theme].Selection}, 0.3)
+        end)
+
+        -- Hover Effects
+        tabInteract.MouseEnter:Connect(function()
+            if window.CurrentTab ~= tab then
+                Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabAfter}, 0.2)
+            end
+        end)
+
+        tabInteract.MouseLeave:Connect(function()
+            if window.CurrentTab ~= tab then
+                Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabBefore}, 0.2)
+            end
         end)
 
         tab.Button = tabButton
@@ -407,21 +590,21 @@ function VexUI:CreateWindow(config)
 
             local button = Create("Frame", {
                 Size = UDim2.new(1, -20, 0, 35),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = tab.Page
             })
 
-            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = button})
-            local uistroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Default"].ElementStroke, Parent = button})
+            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = button})
+            local uistroke = Create("UIStroke", {Color = Color3.fromRGB(255, 255, 255), Thickness = 2.5, Transparency = 0.9, Parent = button})
 
             local title = Create("TextLabel", {
                 Size = UDim2.new(1, -20, 1, 0),
                 Position = UDim2.new(0, 10, 0, 0),
                 BackgroundTransparency = 1,
                 Text = config.Name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
                 Parent = button
@@ -434,12 +617,24 @@ function VexUI:CreateWindow(config)
                 Parent = button
             })
 
+            -- Hover Effects
+            interact.MouseEnter:Connect(function()
+                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.2)
+                Tween(uistroke, {Transparency = 0.7}, 0.2)
+            end)
+
+            interact.MouseLeave:Connect(function()
+                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors}, 0.2)
+                Tween(uistroke, {Transparency = 0.9}, 0.2)
+            end)
+
             interact.Activated:Connect(function()
-                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackgroundHover}, 0.1)
-                Tween(uistroke, {Transparency = 1}, 0.1)
+                CreateRippleEffect(interact, Mouse.X, Mouse.Y)
+                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].Selection}, 0.1)
+                Tween(uistroke, {Transparency = 0.5}, 0.1)
                 task.wait(0.1)
-                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground}, 0.1)
-                Tween(uistroke, {Transparency = 0}, 0.1)
+                Tween(button, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.1)
+                Tween(uistroke, {Transparency = 0.7}, 0.1)
                 config.Callback()
             end)
 
@@ -455,46 +650,45 @@ function VexUI:CreateWindow(config)
 
             local toggle = Create("Frame", {
                 Size = UDim2.new(1, -20, 0, 35),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = tab.Page
             })
 
-            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = toggle})
+            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = toggle})
 
             local title = Create("TextLabel", {
-                Size = UDim2.new(1, -60, 1, 0),
+                Size = UDim2.new(1, -100, 1, 0),
                 Position = UDim2.new(0, 10, 0, 0),
                 BackgroundTransparency = 1,
                 Text = config.Name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
                 Parent = toggle
             })
 
             local toggleSwitch = Create("Frame", {
-                Size = UDim2.new(0, 40, 0, 18),
-                Position = UDim2.new(1, -50, 0.5, -9),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ToggleBackground,
+                Size = UDim2.new(0, 30, 0, 15),
+                Position = UDim2.new(1, -40, 0.5, -7.5),
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = toggle
             })
 
             local switchCorner = Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = toggleSwitch})
-            local switchStroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Default"].ToggleDisabledOuterStroke, Parent = toggleSwitch})
+            local switchStroke = Create("UIStroke", {Color = Color3.fromRGB(255, 255, 255), Thickness = 2, Transparency = 0.9, Parent = toggleSwitch})
 
             local indicator = Create("Frame", {
-                Size = UDim2.new(0, 16, 0, 16),
-                Position = config.Default and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 1, 0.5, -8),
-                BackgroundColor3 = config.Default and VexUI.Theme[config.Theme or "Default"].ToggleEnabled or VexUI.Theme[config.Theme or "Default"].ToggleDisabled,
+                Size = UDim2.new(0, 14, 0, 14),
+                Position = config.Default and UDim2.new(1, -15, 0.5, -7) or UDim2.new(0, 0, 0.5, -7),
+                BackgroundColor3 = config.Default and VexUI.Theme[config.Theme or "Dark"].Selection or Color3.fromRGB(230, 230, 230),
                 BorderSizePixel = 0,
                 Parent = toggleSwitch
             })
 
             local indicatorCorner = Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = indicator})
-            local indicatorStroke = Create("UIStroke", {Color = config.Default and VexUI.Theme[config.Theme or "Default"].ToggleEnabledStroke or VexUI.Theme[config.Theme or "Default"].ToggleDisabledStroke, Parent = indicator})
 
             local interact = Create("TextButton", {
                 Size = UDim2.new(1, 0, 1, 0),
@@ -508,20 +702,30 @@ function VexUI:CreateWindow(config)
             function toggleValue:Set(value)
                 toggleValue.Value = value
                 if value then
-                    Tween(indicator, {Position = UDim2.new(1, -18, 0.5, -8)}, 0.2)
-                    Tween(indicator, {BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ToggleEnabled}, 0.2)
-                    Tween(indicatorStroke, {Color = VexUI.Theme[config.Theme or "Default"].ToggleEnabledStroke}, 0.2)
-                    Tween(switchStroke, {Color = VexUI.Theme[config.Theme or "Default"].ToggleEnabledOuterStroke}, 0.2)
+                    Tween(title, {TextColor3 = VexUI.Theme[config.Theme or "Dark"].Selection}, 0.2)
+                    Tween(indicator, {Position = UDim2.new(1, -15, 0.5, -7)}, 0.2)
+                    Tween(indicator, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].Selection}, 0.2)
+                    Tween(switchStroke, {Transparency = 0}, 0.2)
                 else
-                    Tween(indicator, {Position = UDim2.new(0, 1, 0.5, -8)}, 0.2)
-                    Tween(indicator, {BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ToggleDisabled}, 0.2)
-                    Tween(indicatorStroke, {Color = VexUI.Theme[config.Theme or "Default"].ToggleDisabledStroke}, 0.2)
-                    Tween(switchStroke, {Color = VexUI.Theme[config.Theme or "Default"].ToggleDisabledOuterStroke}, 0.2)
+                    Tween(title, {TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors}, 0.2)
+                    Tween(indicator, {Position = UDim2.new(0, 0, 0.5, -7)}, 0.2)
+                    Tween(indicator, {BackgroundColor3 = Color3.fromRGB(230, 230, 230)}, 0.2)
+                    Tween(switchStroke, {Transparency = 0.9}, 0.2)
                 end
                 config.Callback(value)
             end
 
+            -- Hover Effects
+            interact.MouseEnter:Connect(function()
+                Tween(toggle, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.2)
+            end)
+
+            interact.MouseLeave:Connect(function()
+                Tween(toggle, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors}, 0.2)
+            end)
+
             interact.Activated:Connect(function()
+                CreateRippleEffect(interact, Mouse.X, Mouse.Y)
                 toggleValue:Set(not toggleValue.Value)
             end)
 
@@ -541,29 +745,30 @@ function VexUI:CreateWindow(config)
 
             local slider = Create("Frame", {
                 Size = UDim2.new(1, -20, 0, 50),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = tab.Page
             })
 
-            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = slider})
+            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = slider})
 
             local title = Create("TextLabel", {
-                Size = UDim2.new(1, -20, 0, 20),
+                Size = UDim2.new(1, -180, 0, 20),
                 Position = UDim2.new(0, 10, 0, 5),
                 BackgroundTransparency = 1,
                 Text = config.Name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
                 Parent = slider
             })
 
             local sliderBar = Create("Frame", {
-                Size = UDim2.new(1, -20, 0, 4),
-                Position = UDim2.new(0, 10, 0, 30),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].SliderBackground,
+                Size = UDim2.new(0, 100, 0, 3),
+                Position = UDim2.new(1, -110, 0, 30),
+                BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                BackgroundTransparency = 0.8,
                 BorderSizePixel = 0,
                 Parent = slider
             })
@@ -572,24 +777,36 @@ function VexUI:CreateWindow(config)
 
             local progress = Create("Frame", {
                 Size = UDim2.new(0, 0, 1, 0),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].SliderProgress,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].Selection,
                 BorderSizePixel = 0,
                 Parent = sliderBar
             })
 
             local progressCorner = Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = progress})
 
+            local sliderCircle = Create("Frame", {
+                Size = UDim2.new(0, 8, 0, 8),
+                Position = UDim2.new(0, 0, 0.5, -4),
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].Selection,
+                BorderSizePixel = 0,
+                Parent = progress
+            })
+
+            local circleCorner = Create("UICorner", {CornerRadius = UDim.new(1, 0), Parent = sliderCircle})
+
             local valueLabel = Create("TextLabel", {
-                Size = UDim2.new(0, 50, 0, 20),
-                Position = UDim2.new(1, -60, 0, 5),
-                BackgroundTransparency = 1,
+                Size = UDim2.new(0, 28, 0, 20),
+                Position = UDim2.new(1, -155, 0, 5),
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 Text = tostring(config.Default),
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].NumColor,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
-                TextXAlignment = Enum.TextXAlignment.Right,
+                TextXAlignment = Enum.TextXAlignment.Center,
                 Parent = slider
             })
+
+            local valueCorner = Create("UICorner", {CornerRadius = UDim.new(0, 2), Parent = valueLabel})
 
             local dragging = false
 
@@ -598,7 +815,7 @@ function VexUI:CreateWindow(config)
                 local newValue = math.floor(config.Min + (config.Max - config.Min) * relativeX)
                 newValue = math.clamp(newValue, config.Min, config.Max)
 
-                Tween(progress, {Size = UDim2.new(relativeX, 0, 1, 0)}, 0.1)
+                Tween(progress, {Size = UDim2.new(relativeX, 0, 1, 0)}, 0.3)
                 valueLabel.Text = tostring(newValue)
                 config.Callback(newValue)
             end
@@ -624,7 +841,7 @@ function VexUI:CreateWindow(config)
 
             -- Set initial value
             local initialProgress = (config.Default - config.Min) / (config.Max - config.Min)
-            Tween(progress, {Size = UDim2.new(initialProgress, 0, 1, 0)}, 0.1)
+            Tween(progress, {Size = UDim2.new(initialProgress, 0, 1, 0)}, 0.3)
 
             return slider
         end
@@ -640,46 +857,55 @@ function VexUI:CreateWindow(config)
 
             local dropdown = Create("Frame", {
                 Size = UDim2.new(1, -20, 0, 35),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = tab.Page
             })
 
-            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = dropdown})
+            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = dropdown})
 
             local title = Create("TextLabel", {
-                Size = UDim2.new(1, -40, 1, 0),
+                Size = UDim2.new(1, -180, 1, 0),
                 Position = UDim2.new(0, 10, 0, 0),
                 BackgroundTransparency = 1,
                 Text = config.Name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
                 Parent = dropdown
             })
 
-            local arrow = Create("TextLabel", {
-                Size = UDim2.new(0, 20, 0, 20),
-                Position = UDim2.new(1, -30, 0.5, -10),
-                BackgroundTransparency = 1,
-                Text = "▼",
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
-                Font = Enum.Font.GothamBold,
+            local selectFrame = Create("Frame", {
+                Size = UDim2.new(0, 148, 0, 25),
+                Position = UDim2.new(1, -158, 0.5, -12.5),
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindColors,
+                BorderSizePixel = 0,
                 Parent = dropdown
             })
 
+            local selectCorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = selectFrame})
+            local selectStroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindStrokeColors, Parent = selectFrame})
+
             local selectedText = Create("TextLabel", {
-                Size = UDim2.new(1, -60, 1, 0),
-                Position = UDim2.new(0, 10, 0, 0),
+                Size = UDim2.new(1, -30, 1, 0),
+                Position = UDim2.new(0, 5, 0, 0),
                 BackgroundTransparency = 1,
-                Text = config.Multi and "None" or (config.Default[1] or "None"),
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 10,
+                Text = config.Multi and "Select Options" or (config.Default[1] or "Select Option"),
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxTextColor,
+                TextSize = 12,
                 Font = Enum.Font.Gotham,
-                TextXAlignment = Enum.TextXAlignment.Right,
-                Parent = dropdown
+                TextXAlignment = Enum.TextXAlignment.Left,
+                Parent = selectFrame
+            })
+
+            local arrow = Create("ImageLabel", {
+                Size = UDim2.new(0, 20, 0, 20),
+                Position = UDim2.new(1, -25, 0.5, -10),
+                BackgroundTransparency = 1,
+                Image = "rbxassetid://16851841101",
+                ImageColor3 = VexUI.Theme[config.Theme or "Dark"].DropdownColorPickerImageArrowColors,
+                Parent = selectFrame
             })
 
             local interact = Create("TextButton", {
@@ -692,51 +918,61 @@ function VexUI:CreateWindow(config)
             local expanded = false
             local optionsFrame
 
+            -- Hover Effects
+            interact.MouseEnter:Connect(function()
+                Tween(dropdown, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.2)
+                Tween(selectFrame, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.2)
+            end)
+
+            interact.MouseLeave:Connect(function()
+                Tween(dropdown, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors}, 0.2)
+                Tween(selectFrame, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindColors}, 0.2)
+            end)
+
             interact.Activated:Connect(function()
+                CreateRippleEffect(interact, Mouse.X, Mouse.Y)
                 if expanded then
                     -- Collapse
                     if optionsFrame then
-                        Tween(optionsFrame, {Size = UDim2.new(1, -20, 0, 0)}, 0.3)
+                        Tween(optionsFrame, {Size = UDim2.new(0, 148, 0, 0)}, 0.3)
+                        Tween(arrow, {Rotation = 0}, 0.3)
                         task.wait(0.3)
                         optionsFrame:Destroy()
                         optionsFrame = nil
                     end
                     Tween(dropdown, {Size = UDim2.new(1, -20, 0, 35)}, 0.3)
-                    arrow.Text = "▼"
                 else
                     -- Expand
                     Tween(dropdown, {Size = UDim2.new(1, -20, 0, 35 + #config.Options * 25)}, 0.3)
-                    arrow.Text = "▲"
+                    Tween(arrow, {Rotation = 180}, 0.3)
 
                     optionsFrame = Create("Frame", {
-                        Size = UDim2.new(1, -20, 0, #config.Options * 25),
-                        Position = UDim2.new(0, 10, 0, 35),
-                        BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].SecondaryElementBackground,
+                        Size = UDim2.new(0, 148, 0, #config.Options * 25),
+                        Position = UDim2.new(1, -158, 0, 40),
+                        BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindColors,
                         BorderSizePixel = 0,
                         Parent = dropdown
                     })
 
-                    local optionsCorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = optionsFrame})
+                    local optionsCorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = optionsFrame})
+                    local optionsStroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindStrokeColors, Parent = optionsFrame})
                     local optionsLayout = Create("UIListLayout", {Padding = UDim.new(0, 2), Parent = optionsFrame})
 
                     for i, option in ipairs(config.Options) do
                         local optionButton = Create("TextButton", {
                             Size = UDim2.new(1, 0, 0, 23),
-                            BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].DropdownUnselected,
-                            BorderSizePixel = 0,
+                            BackgroundTransparency = 1,
                             Text = "",
                             Parent = optionsFrame
                         })
-
-                        local optionCorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = optionButton})
 
                         local optionText = Create("TextLabel", {
                             Size = UDim2.new(1, -10, 1, 0),
                             Position = UDim2.new(0, 5, 0, 0),
                             BackgroundTransparency = 1,
                             Text = option,
-                            TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                            TextSize = 11,
+                            TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxTextColor,
+                            TextSize = 12,
                             Font = Enum.Font.Gotham,
                             TextXAlignment = Enum.TextXAlignment.Left,
                             Parent = optionButton
@@ -749,7 +985,7 @@ function VexUI:CreateWindow(config)
                                 else
                                     table.insert(config.Default, option)
                                 end
-                                selectedText.Text = #config.Default > 0 and table.concat(config.Default, ", ") or "None"
+                                selectedText.Text = #config.Default > 0 and table.concat(config.Default, ", ") or "Select Options"
                             else
                                 config.Default = {option}
                                 selectedText.Text = option
@@ -774,20 +1010,20 @@ function VexUI:CreateWindow(config)
 
             local input = Create("Frame", {
                 Size = UDim2.new(1, -20, 0, 35),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].ElementBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemColors,
                 BorderSizePixel = 0,
                 Parent = tab.Page
             })
 
-            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = input})
+            local uicorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = input})
 
             local title = Create("TextLabel", {
                 Size = UDim2.new(0, 100, 1, 0),
                 Position = UDim2.new(0, 10, 0, 0),
                 BackgroundTransparency = 1,
                 Text = config.Name,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                TextSize = 12,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTitleColors,
+                TextSize = 13,
                 Font = Enum.Font.GothamBold,
                 TextXAlignment = Enum.TextXAlignment.Left,
                 Parent = input
@@ -796,19 +1032,28 @@ function VexUI:CreateWindow(config)
             local inputBox = Create("TextBox", {
                 Size = UDim2.new(1, -120, 0, 25),
                 Position = UDim2.new(0, 110, 0.5, -12.5),
-                BackgroundColor3 = VexUI.Theme[config.Theme or "Default"].InputBackground,
+                BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindColors,
                 BorderSizePixel = 0,
                 Text = config.Default,
                 PlaceholderText = config.Placeholder,
-                TextColor3 = VexUI.Theme[config.Theme or "Default"].TextColor,
-                PlaceholderColor3 = VexUI.Theme[config.Theme or "Default"].PlaceholderColor,
+                TextColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxTextColor,
+                PlaceholderColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextColors,
                 TextSize = 12,
                 Font = Enum.Font.Gotham,
                 Parent = input
             })
 
-            local inputCorner = Create("UICorner", {CornerRadius = UDim.new(0, 3), Parent = inputBox})
-            local inputStroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Default"].InputStroke, Parent = inputBox})
+            local inputCorner = Create("UICorner", {CornerRadius = UDim.new(0, 4), Parent = inputBox})
+            local inputStroke = Create("UIStroke", {Color = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindStrokeColors, Parent = inputBox})
+
+            -- Hover Effects
+            inputBox.MouseEnter:Connect(function()
+                Tween(inputBox, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ButtonHover}, 0.2)
+            end)
+
+            inputBox.MouseLeave:Connect(function()
+                Tween(inputBox, {BackgroundColor3 = VexUI.Theme[config.Theme or "Dark"].ItemTextBoxKeyBindColors}, 0.2)
+            end)
 
             inputBox.FocusLost:Connect(function(enterPressed)
                 config.Callback(inputBox.Text)
