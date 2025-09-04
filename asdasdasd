@@ -185,7 +185,6 @@ function VexUI.Utils:GetDeviceType()
 end
 
 -- Close the Utils module definition
-end
 
 -- Core Classes
 VexUI.Core = {}
@@ -203,6 +202,12 @@ function VexUI.Core.Window.new(config)
     self.config.Position = self.config.Position or UDim2.new(0.5, -300, 0.5, -200)
     self.config.Theme = self.config.Theme or "Dark"
     self.config.DestroyIfExists = self.config.DestroyIfExists or true
+
+    -- Validate theme exists
+    if not VexUI.Themes[self.config.Theme] then
+        warn("VexUI: Theme '" .. self.config.Theme .. "' not found, using 'Dark' theme")
+        self.config.Theme = "Dark"
+    end
 
     self.tabs = {}
     self.currentTab = nil
@@ -427,9 +432,13 @@ end
 function VexUI.Core.Tab:UpdateCanvasSize()
     local totalHeight = 0
     for _, component in ipairs(self.components) do
-        totalHeight = totalHeight + component.frame.Size.Y.Offset + 8 -- 8 for padding
+        if component.frame then
+            totalHeight = totalHeight + component.frame.Size.Y.Offset + 8 -- 8 for padding
+        end
     end
-    self.pageFrame.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
+    if self.pageFrame then
+        self.pageFrame.CanvasSize = UDim2.new(0, 0, 0, totalHeight)
+    end
 end
 
 function VexUI.Core.Window:ToggleMinimize()
@@ -583,7 +592,15 @@ function VexUI.Notifications:Create(config)
     local notification = Instance.new("Frame")
     notification.Name = "Notification"
     notification.Size = UDim2.new(1, 0, 0, 80)
-    notification.BackgroundColor3 = VexUI.Themes[notificationConfig.Theme or "Dark"].NotificationNotifyColor
+
+    -- Safely get notification color
+    local notifyColor = VexUI.Themes["Dark"].NotificationNotifyColor -- Default
+    local themeName = notificationConfig.Theme or "Dark"
+    if VexUI.Themes[themeName] and VexUI.Themes[themeName].NotificationNotifyColor then
+        notifyColor = VexUI.Themes[themeName].NotificationNotifyColor
+    end
+
+    notification.BackgroundColor3 = notifyColor
     notification.BorderSizePixel = 0
     notification.Parent = self.container
 
@@ -626,7 +643,13 @@ function VexUI.Notifications:Create(config)
     title.Position = UDim2.new(0, 40, 0, 8)
     title.BackgroundTransparency = 1
     title.Text = notificationConfig.Title
-    title.TextColor3 = VexUI.Themes[notificationConfig.Theme or "Dark"].NotificationNotifyTitleColor
+
+    -- Safely get title color
+    local titleColor = VexUI.Themes["Dark"].NotificationNotifyTitleColor -- Default
+    if VexUI.Themes[themeName] and VexUI.Themes[themeName].NotificationNotifyTitleColor then
+        titleColor = VexUI.Themes[themeName].NotificationNotifyTitleColor
+    end
+    title.TextColor3 = titleColor
     title.TextSize = 14
     title.Font = Enum.Font.GothamBold
     title.TextXAlignment = Enum.TextXAlignment.Left
@@ -638,7 +661,13 @@ function VexUI.Notifications:Create(config)
     content.Position = UDim2.new(0, 40, 0, 28)
     content.BackgroundTransparency = 1
     content.Text = notificationConfig.Content
-    content.TextColor3 = VexUI.Themes[notificationConfig.Theme or "Dark"].NotificationNotifyTextColor
+
+    -- Safely get content color
+    local contentColor = VexUI.Themes["Dark"].NotificationNotifyTextColor -- Default
+    if VexUI.Themes[themeName] and VexUI.Themes[themeName].NotificationNotifyTextColor then
+        contentColor = VexUI.Themes[themeName].NotificationNotifyTextColor
+    end
+    content.TextColor3 = contentColor
     content.TextSize = 12
     content.Font = Enum.Font.Gotham
     content.TextXAlignment = Enum.TextXAlignment.Left
@@ -650,7 +679,13 @@ function VexUI.Notifications:Create(config)
     local progressBar = Instance.new("Frame")
     progressBar.Size = UDim2.new(1, 0, 0, 2)
     progressBar.Position = UDim2.new(0, 0, 1, -2)
-    progressBar.BackgroundColor3 = VexUI.Themes[notificationConfig.Theme or "Dark"].Selection
+
+    -- Safely get progress bar color
+    local progressColor = VexUI.Themes["Dark"].Selection -- Default
+    if VexUI.Themes[themeName] and VexUI.Themes[themeName].Selection then
+        progressColor = VexUI.Themes[themeName].Selection
+    end
+    progressBar.BackgroundColor3 = progressColor
     progressBar.BorderSizePixel = 0
     progressBar.Parent = notification
 
@@ -1310,7 +1345,9 @@ function VexUI.Components.Button:CreateButton()
     -- Click effect
     button.MouseButton1Click:Connect(function()
         -- Ripple effect
-        VexUI.Utils:CreateRipple(frame, button)
+        if VexUI.Utils.CreateRipple then
+            VexUI.Utils.CreateRipple(VexUI.Utils, frame, button)
+        end
 
         -- Callback
         self.config.Callback()
@@ -1323,7 +1360,17 @@ VexUI.Utils.CreateRipple = function(self, parent, button)
     circle.Name = "Ripple"
     circle.BackgroundTransparency = 1
     circle.Image = "rbxassetid://266543268"
-    circle.ImageColor3 = VexUI.Themes[parent.Parent.Parent.Parent.config.Theme].RippleColor or Color3.fromRGB(255, 255, 255)
+
+    -- Safely get theme color
+    local themeColor = Color3.fromRGB(255, 255, 255) -- Default white
+    if parent and parent.Parent and parent.Parent.Parent and parent.Parent.Parent.Parent and
+       parent.Parent.Parent.Parent.config and parent.Parent.Parent.Parent.config.Theme and
+       VexUI.Themes[parent.Parent.Parent.Parent.config.Theme] and
+       VexUI.Themes[parent.Parent.Parent.Parent.config.Theme].RippleColor then
+        themeColor = VexUI.Themes[parent.Parent.Parent.Parent.config.Theme].RippleColor
+    end
+
+    circle.ImageColor3 = themeColor
     circle.ImageTransparency = 0.8
     circle.Parent = parent
 
