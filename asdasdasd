@@ -541,7 +541,7 @@ function VexUI:CreateWindow(config)
             Parent = pageContainer
         })
 
-        local pageLayout = Create("UIListLayout", {
+        local tabPageLayout = Create("UIListLayout", {
             Padding = UDim.new(0, 3),
             SortOrder = Enum.SortOrder.LayoutOrder,
             Parent = tabPage
@@ -578,7 +578,15 @@ function VexUI:CreateWindow(config)
         tab.Button = tabButton
         tab.Title = tabTitle
         tab.Page = tabPage
-        tab.Layout = pageLayout
+        tab.Layout = tabPageLayout
+
+        -- Auto-select first tab
+        if not window.CurrentTab then
+            window.CurrentTab = tab
+            pageLayout:JumpTo(tabPage)
+            Tween(tabButton, {BackgroundColor3 = VexUI.Theme[config.Theme].TabAfter}, 0.3)
+            Tween(tabTitle, {TextColor3 = VexUI.Theme[config.Theme].Selection}, 0.3)
+        end
 
         -- Component Functions
 
